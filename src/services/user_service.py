@@ -97,7 +97,7 @@ class UserService:
         items = response.get("items", []) if response else []
         return [self._map_artist(a) for a in items]
 
-    def get_user_playlists(self, limit: int = 100) -> list[Playlist]:
+    def get_user_playlists(self, limit: int = 50) -> list[Playlist]:
         response = self.sp.current_user_playlists(limit=limit)
         items = response.get("items", []) if response else []
         return [self._map_playlist(p) for p in items]
