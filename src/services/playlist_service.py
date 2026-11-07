@@ -65,7 +65,7 @@ class PlaylistService:
         )
 
     def _check_existing_playlist(self, user: User, name: str) -> str | None:
-        user_playlists = self.user_service.get_user_playlists(limit=100)
+        user_playlists = self.user_service.get_user_playlists(limit=50)
         for playlist in user_playlists:
             if playlist.name == name:
                 return playlist.id
@@ -290,13 +290,13 @@ class PlaylistService:
 
         try:
             playlist_data = self.sp.user_playlist_create(
-                user.id, playlist_name, public=True)
+                user.id, playlist_name, public=False)
             playlist = Playlist(
                 id=playlist_data["id"],
                 name=playlist_data["name"],
                 tracks=[],
                 owner=None,
-                public=playlist_data.get("public", True),
+                public=playlist_data.get("public", False),
                 uri=playlist_data["uri"],
                 url=playlist_data["external_urls"]["spotify"]
             )
