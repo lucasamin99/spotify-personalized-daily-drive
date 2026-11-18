@@ -2,7 +2,7 @@ name: Schedule Daily Drive Playlist Update
 
 on:
   schedule:
-    - cron: '30 7 * * *'
+    - cron: '0 7 * * *'
   workflow_dispatch:
 jobs:
   update-playlist:
@@ -12,7 +12,7 @@ jobs:
 
       - name: Observability - schedule vs actual start
         env:
-          TZ_NAME: America/Sao_Paulo
+          TZ_NAME: Europe/Rome
         run: |
           echo "=== Trigger Context ==="
           echo "event=${{ github.event_name }}"
